@@ -62,25 +62,25 @@ h1, h2, h3, h4, p {
     background-size: cover;
 }
 
-#gift-img-happy:hover {
-    background-image: url("images/happy.gif");
+
+.gift-img-cake {
+    margin: 20px auto;
+    max-width: 400px;
+    height: 400px;
+    border: 6px solid white;
+    border-radius: 10px;
+    background-image: url("images/cake.jpg");
+    background-size: cover;
 }
 
-#gift-img-hot:hover {
-    background-image: url("images/hot.gif");
+#gift-img-cake:hover {
+    background-image: url("images/unicorn.gif");
 }
 
-#gift-img-genius:hover {
-    background-image: url("images/genius.gif");
+#gift-img-rest:hover {
+    background-image: url("images/monkey.gif");
 }
 
-#gift-img-badass:hover {
-    background-image: url("images/badass.gif");
-}
-
-#gift-img-cheers:hover {
-    background-image: url("images/cheers.gif");
-}
 
 #footer {
     font-style: italic;

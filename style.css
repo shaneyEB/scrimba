@@ -1,0 +1,112 @@
+body {
+    margin: 10 auto;
+    background-image: linear-gradient(to right, #2f2f2f, rgb(74, 74, 74));
+    text-align: center;
+    color: whitesmoke;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.shadow {
+    text-shadow: 2px 2px 4px #242424;
+}
+
+.altText {
+    font-family: 'Architects Daughter', cursive;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #a1a0a0;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.wrapper {
+    margin: 20px auto;
+    background-color: #707070;
+    border-spacing: 11px;
+    border-radius: 5px;
+    border: 1px solid rgba(243, 240, 240, 0.508);
+    display: table;
+    color: #222;
+    width: 95%;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.wrapper ul {
+    display: table-row;
+}
+
+.wrapper li {
+    margin:0 auto;
+    background-color: white;
+    border: 1px solid rgb(141, 139, 139);
+    border-radius: 4px;
+    display: table-cell;
+    padding: 10px;
+    vertical-align: center;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.display {
+    display: grid;
+    grid-gap: 20px 10px;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+.display>* {
+    border-radius: 4px;
+    border: 2px solid rgb(249, 244, 244);
+    padding: 10px;
+    background: #8b8787;
+}
+
+.display li {
+    background-color: #b4acd4;
+    border-radius: 6px;
+    border: 3px solid rgb(249, 244, 244);
+    padding: 10px;
+    color: #272626;
+}
+
+.display li:hover {
+    background-color: rgb(33, 33, 33);
+    color: #b4acd4;
+}
+
+.display ul {
+    display: contents;
+    list-style: none;
+    margin: 0;
+}
+
+.orange {
+    color: #ffa500;
+}
+
+.orange_back {
+    background: #f1cf90;
+}
+
+.pink_back {
+    background: #ebc5d0;
+}
+
+.green_back {
+    background: #cee4a8;
+}
+
+.green {
+    color: #cee4a8;
+}
+
+.purple_back {
+    background: #b4acd4;
+}
+
+.purple {
+    color: #b4acd4;
+}
+
