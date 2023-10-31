@@ -1,0 +1,99 @@
+body {
+    margin: 50 auto;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    background: #9fadbb;
+}
+
+.shadow {
+    text-shadow: 2px 2px 10px #ababab;
+}
+
+.altText {
+    font-family: 'Architects Daughter', cursive;
+    text-shadow: 1px 1px 2px #626262;
+    font-size: 28px;
+}
+
+.avatar {
+    width: 50%;
+    background: rgb(121, 162, 176);
+    border-radius: 5px;
+    border: 4px dashed rgb(245, 245, 249);
+}
+
+.avatar:hover {
+    border-radius: 5px;
+    background: #f0b159;
+}
+
+.card {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    background: #bed0e1;
+    color: #2b2839;
+    border-bottom: 6px solid #f0b159;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px #242424;
+    /*
+    Challenge:
+    Find a color palette you like on Coolors.co
+    and use it in your business card.
+     */
+}
+
+.orange {
+    color: #f0b159;
+}
+
+.xborder {
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/*
+Stretch goals:
+Find other ways you can personalize 
+the design of your business card, e.g.:
+- change the border(s)
+- add border radius
+- shuffle the layout
+- shadows        🤯
+- hover effects  🤯🤯
+- animations     🤯🤯🤯
+*/
+
+
+#xcard {
+    animation: myCard 2s ease 0s 1 normal forwards;
+}
+
+@keyframes myCard {
+    0% {
+        opacity: 0;
+        transform: translateX(-250px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+#xpic {
+    animation: myXPic 2s ease 0s 1 normal forwards;
+}
+
+@keyframes myXPic {
+    0% {
+        transform: scale(2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
