@@ -1,0 +1,79 @@
+@font-face {
+    font-family: score;
+    src: url(fonts/CursedTimerUlil-Aznm.ttf);
+}
+
+.score {
+    font-family: score;
+    color: #F94F6D;
+    font-size: 54px;
+}
+
+.score-green {
+    font-family: score;
+    color: #77f94f;
+    font-size: 54px;
+}
+
+.title {
+    color: white;
+    font-weight: bold;
+    line-height: 35px;
+}
+
+.score-back {
+    background: #080001;
+    margin: auto auto;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+}
+
+.team {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    background: #1B244A;
+    width: 300px;
+    height: auto;
+    margin: 10 auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px black;
+}
+
+.start {
+    display: flex;
+    justify-content: space-around;
+    width: 300px;
+    height: auto;
+    margin: 10 auto;
+}
+
+.button-group {
+    width: 90px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons {
+    color: #9AABD8;
+    border-radius: 2px;
+    border: 1px solid #9AABD8;
+}
+.greenBtn{
+    background:green;
+    font-weight: bold;
+    padding:10px;
+    border-radius: 4px;
+    color:white;
+    box-shadow: 1px 1px 1px black;
+}
