@@ -1,0 +1,112 @@
+body {
+    font-family: Quicksand;
+    font-weight: bold;
+    text-align: center;
+    background-color: #a5a4a2;
+}
+
+h1 {
+    font-family: 'Architects Daughter', cursive;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+h2 {
+    font-size: 50px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: orange;
+    font-family: 'Architects Daughter', cursive;
+    text-shadow: 2px 2px 4px black;
+}
+
+p {
+    font-weight: bold;
+       font-size:18px;
+}
+
+#save-el {
+    color: orange;
+    font-family: 'Architects Daughter', cursive;
+    text-shadow: 2px 2px 4px black;
+}
+
+.wrapper {
+    margin: auto;
+    max-width: 500px;
+    display: flex;
+    padding:100px;
+}
+
+.inner {
+    padding: 20px;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.375);
+    border-radius: 6px;
+    margin: auto;
+    box-shadow: 2px 2px 2px #00000061
+}
+
+.details {
+    background: rgba(255, 255, 255, 0.209);
+    border-radius: 6px;
+    padding: 5px;
+}
+
+button {
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+    font-weight: bold;
+    width: 200px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+#increment-btn {
+    background: orange;
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px #00000061
+}
+
+#increment-btn:hover {
+    background: #f3b43f;
+}
+
+#save-btn {
+    background: darkgreen;
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px #00000061
+}
+
+#save-btn:hover {
+    background: #5b9f5b;
+}
+
+
+.row {
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img {
+    height: 50%;
+    margin: 10px;
+    box-shadow: 10px 14px 20px 0px rgba(226, 204, 189, 1);
+}
+
+.img-1 {
+    background-image: url("sliky.png");
+    background-size: cover;
+    width: 100%;
+    border: 8px solid #8e9499;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px black;
+
+}
