@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;700;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Sans 3", sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1.5px gray solid;
+}
+
+.container {
+  width: 375px;
+  background-color: #ffffff;
+  margin: auto;
+}
+
+.avatarXC {
+  width: 34px;
+}
+
+.avatarXC img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.post_img {
+  width: 375px;
+}
+
+.post_img img {
+  width: 100%;
+}
+
+.postXC {
+  width: 34px;
+  height: 34px;
+}
+
+.postXC img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.profile {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  align-items: center;
+}
+
+.name {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.location {
+  font-size: 12px;
+}
+
+.details {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+}
+
+.likes {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.user_comments {
+  font-size: 13px;
+  display: flex;
+  gap: 8px;
+}
+
+.actions {
+  padding: 0px 8px;
+}
+
+.section {
+  margin-top: 16px;
+}
