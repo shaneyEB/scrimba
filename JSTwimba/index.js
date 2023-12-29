@@ -50,7 +50,7 @@ function handleXTweetBtnClick() {
     if (xtweetInput.value) {
         const x = {
             handle: `@XUser ✅`,
-            profilePic: `images/flower.png`,
+            profilePic: `images/scrimbalogo.png`,
             tweetText: xtweetInput.value
         }
         tweetsData[index].replies.unshift(x)
