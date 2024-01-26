@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <title>Add to Cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript">
+        function increaseCount(a, b, refresh) {
+            var input = b.previousElementSibling;
+            var value = parseInt(input.value, 10);
+            value = isNaN(value) ? 0 : value;
+            value++;
+            input.value = value;
+            if(refresh){
+            document.getElementById("updateCart").click();
+            }
+        }
+        function decreaseCount(a, b, refresh) {
+            var input = b.nextElementSibling;
+            var value = parseInt(input.value, 10);
+            if (value > 1) {
+                value = isNaN(value) ? 0 : value;
+                value--;
+                input.value = value;
+            }
+            if(refresh){
+            document.getElementById("updateCart").click();
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id='spinIt'></div>
+    <div class="container">
+        <img id="cart" class="fixed" src="assets/cart.png" style="display:none; height:30px;">
+        <div id="shoppingTotal" class="fixedTotal"></div>
+        <img class="logo" src="assets/nstWhite.png">
+        <div class="backBlack"> <span class="linkx" data-hardware="hardware">Hardware</span> | <span class="linkx"
+                data-embroidery="embroidery">Embroidery</span>| <span class="linkx" data-about="about">About</span>
+        </div>
+        <input type="search" id="search-criteria" className="form-control blk animated bounceIn"
+            placeholder="Search..."></input>
+        <div id="error"></div>
+        <div id="adds" class="main"></div>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <span id="mainTitle"> </span>
+            </div>
+            <div class="modal-body">
+                <div id="errorTrap" style="display:none;" class="liked"> </div>
+                <div id="selectedId" style="display:none;"></div>
+                <div id="xDetails"></div>
+                <div id="cartFields">
+                    <div class="counter">
+                        <span class="down" onClick='decreaseCount(event, this, false)'>-</span>
+                        <input type="text" id="qty" value="1">
+                        <span class="up" onClick='increaseCount(event, this, false)'>+</span>
+                    </div>
+                    <div class="controls-container">
+                        <div class="value-radios" id="value-radios"></div>
+                    </div>
+                </div>
+                <div id="cartTotal"></div>
+            </div>
+            <div class="modal-footer">
+                <div class="containerCart">
+                    <button type="button" class="cartButton" id="save-button">➕ Add</button>
+                    <button type="button" id="viewCart" class="cartButton">🔍 View</button>
+                    <button type="button" id="updateCart" class="cartButton">🛒 Update</button>
+                    <button type="button" id="purchaseCart" class="cartButton">💲 Purchase</button>
+                </div>
+            </div>
+        </div>
+        <script src="index.js" type="module"></script>
+</body>
+
+</html>
