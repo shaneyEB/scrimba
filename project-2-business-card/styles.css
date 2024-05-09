@@ -36,7 +36,6 @@ body {
     text-align: center;
     background: #bed0e1;
     color: #2b2839;
-    border-bottom: 6px solid #f0b159;
     border-radius: 5px;
     box-shadow: 2px 2px 4px #242424;
     /*
@@ -55,6 +54,7 @@ body {
     border-radius: 5px;
 }
 
+
 /*
 Stretch goals:
 Find other ways you can personalize 
@@ -67,7 +67,6 @@ the design of your business card, e.g.:
 - animations     🤯🤯🤯
 */
 
-
 #xcard {
     animation: myCard 2s ease 0s 1 normal forwards;
 }
@@ -77,7 +76,6 @@ the design of your business card, e.g.:
         opacity: 0;
         transform: translateX(-250px);
     }
-
     100% {
         opacity: 1;
         transform: translateX(0);
@@ -92,7 +90,6 @@ the design of your business card, e.g.:
     0% {
         transform: scale(2);
     }
-
     100% {
         transform: scale(1);
     }
