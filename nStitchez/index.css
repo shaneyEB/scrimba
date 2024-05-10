@@ -1,50 +1,40 @@
+/* scrollbar */
 
-/* width */
 ::-webkit-scrollbar {
     width: 8px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
     border-radius: 9px;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: #f6aa68;
     border-radius: 9px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #f8a761;
 }
 
-
-html,
 body {
+    user-select: none;
     margin: 0;
     padding: 0px;
     font-family: 'Poppins', sans-serif;
-    background-color: #141414;
     color: #222;
-    user-select: none;
     font-size: calc(15px + 0.2vw);
+    font-family: "Quicksand", sans-serif;
     line-height: 100%;
-}
-
-#error {
-    border-bottom: 1px solid #fba972;
-}
-
-.backBlack {
-    margin: 0 -6px;
-    padding: 10px;
-    text-align: center;
-    letter-spacing: .3rem;
-    border-bottom: 1px solid #fba972;
-   
+    background-image: url(images/logoBack.png), url(images/main2.png);
+    background-position: left top, right bottom;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 32rem;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 #errorTrap {
@@ -66,14 +56,14 @@ body {
 
 .fixed {
     position: absolute;
-    top: 5px;
-    right: 16px;
+    top: 148px;
+    right: 55px;
 }
 
 .fixedTotal {
     position: absolute;
-    top: 30px;
-    right: 18px;
+    top: 180px;
+    right: 55px;
 }
 
 .fixed:hover {
@@ -82,23 +72,8 @@ body {
 }
 
 .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    max-width: 1000px;
-    min-height: 600px;
-    margin: 10px auto;
-    background: #fff;
-    padding: 5px;
-    border-radius: 10px;
-    border: 3px solid #fba972;
-    color: black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.logo {
-    height: 100px;
-    margin: 0 auto;
+    margin-top: 90px !important;
+    padding: 50px;
 }
 
 .ximg {
@@ -117,15 +92,13 @@ body {
 
 input {
     color: #d68b45;
-    background-color: #dcddde;
-    border: 0;
-    padding: 7px;
-    border-radius: 8px;
-    font-size: 24px;
+    background-color: #fff;
+    letter-spacing: .2rem;
     text-align: center;
     margin: 10px 0;
+    padding: 7px;
     border: 1px solid #eb8d4d;
-    letter-spacing: .2rem;
+    border-radius: 8px;
 }
 
 input:focus {
@@ -134,19 +107,19 @@ input:focus {
 
 .button {
     color: #FDFDFD;
+    font-size: 32px;
+    text-align: center;
     background-color: #eb8d4d;
     border: 0;
     height: 40px;
     width: 40px;
-    font-size:35px;
     border-radius: 50%;
-    text-align: center;
     margin: auto;
 }
 
 .cartButton {
-    color: #7f7e7d;
-    background-color: rgb(14 14 14);
+    color: #efefee;
+    background-color: #99b0d9;
     border: 0;
     height: 35px;
     border-radius: 5px;
@@ -155,8 +128,7 @@ input:focus {
 }
 
 .cartButton:hover {
-    color: #95b8e7;
-    background-color: #353333;
+    background-color: #99b0d9b8;
     cursor: pointer;
 }
 
@@ -165,29 +137,8 @@ input:focus {
     cursor: pointer;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-ul li {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    background-color: #FFFDF8;
-    padding: 15px;
-    border-radius: 8px;
-    flex-grow: 1;
-    text-align: left;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2)
-}
-
 #error {
-    color: red;
-    font-size: 20px;
+    color: #eb8d4d;
 }
 
 .main {
@@ -196,8 +147,7 @@ ul li {
 }
 
 #mainTitle {
-    font-size: 22px;
-    color: #afabab;
+    color: #f5f1f1;
 }
 
 .right {
@@ -240,8 +190,10 @@ ul li {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    margin-top: 10px;
-    border-bottom: 1px solid lightgray;
+    margin-top: 2px;
+    background-color: #f3f2f2cc;
+    border-radius: 4px;
+    padding: 5px;
 }
 
 .containerCart {
@@ -302,7 +254,9 @@ ul li {
     text-align: right;
 }
 
+
 /* The Modal (background) */
+
 .modal {
     display: none;
     /* Hidden by default */
@@ -322,18 +276,19 @@ ul li {
     /* Enable scroll if needed */
     background-color: rgb(0, 0, 0);
     /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgb(84 84 84 / 25%);
     /* Black w/ opacity */
     border-radius: 10px;
 }
 
+
 /* Modal Content */
+
 .modal-content {
     position: relative;
     background-color: #fefefe;
     margin: auto;
     padding: 0;
-    border: 2px solid #1c1c1c;
     width: 90%;
     max-width: 500px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -344,13 +299,14 @@ ul li {
     border-radius: 10px;
 }
 
+
 /* Add Animation */
+
 @-webkit-keyframes animatetop {
     from {
         top: -300px;
         opacity: 0
     }
-
     to {
         top: 0;
         opacity: 1
@@ -362,14 +318,15 @@ ul li {
         top: -300px;
         opacity: 0
     }
-
     to {
         top: 0;
         opacity: 1
     }
 }
 
-/* The Close Button */
+
+/* The Close Button  for modal*/
+
 .close {
     color: white;
     float: right;
@@ -387,8 +344,10 @@ ul li {
 .modal-header {
     height: 20px;
     padding: 20px 16px;
-    background-color: #1c1c1c;
+    background: rgb(110, 132, 182);
     color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .modal-body {
@@ -399,19 +358,23 @@ ul li {
 .modal-footer {
     height: 50px;
     padding: 2px 16px;
-    background-color: #1c1c1c;
+    background: rgb(110, 132, 182);
     color: #292828;
     align-items: center;
     justify-content: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
-/* Important part */
+
+/* dialog */
+
 .modal-dialog {
     overflow-y: initial !important
 }
 
 .modal-body {
-    max-height: calc(100vh - 200px);
+    max-height: calc(100vh - 100px);
     overflow-y: auto;
 }
 
@@ -468,9 +431,8 @@ label {
     width: 50px;
     border: 0;
     line-height: 20px;
-    font-size: 20px;
     text-align: center;
-    background: #999999;
+    background: #b0bcd9;
     color: #fff;
     appearance: none;
     outline: 0;
@@ -499,14 +461,12 @@ label {
     background-color: rgba(15, 15, 15, 0.26);
     z-index: 9999999;
     display: none;
-
 }
 
 @-webkit-keyframes spin {
     from {
         -webkit-transform: rotate(0deg);
     }
-
     to {
         -webkit-transform: rotate(360deg);
     }
@@ -516,7 +476,6 @@ label {
     from {
         transform: rotate(0deg);
     }
-
     to {
         transform: rotate(360deg);
     }
@@ -540,4 +499,241 @@ label {
     border-radius: 50%;
     -webkit-animation: spin .8s linear infinite;
     animation: spin .8s linear infinite;
+}
+
+.shadow {
+    text-shadow: 2px 2px 4px #242424;
+    color: white;
+}
+
+.altText {
+    font-family: "Architects Daughter", cursive;
+}
+
+.small {
+    color: rgb(144, 143, 143);
+    font-size: .9rem;
+}
+
+.link {
+    background: rgba(176, 193, 233, 0.8);
+    width: 200px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px auto;
+}
+
+.link:hover {
+    background: #eebda8e8;
+    cursor: pointer;
+}
+
+.orange {
+    color: #eb8d4d;
+}
+
+.orange_back {
+    background: #f1cf9073;
+}
+
+.pink_back {
+    background: #ebc5d066;
+}
+
+.green_back {
+    background: #cee4a8;
+}
+
+.green {
+    color: #cee4a8;
+}
+
+.grey {
+    color: #505150;
+}
+
+.purple_back {
+    background: #b4acd486;
+}
+
+.purple {
+    color: #b4acd4;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* footer */
+
+.footer {
+    width: 100%;
+    background: rgb(110 132 182 / 80%);
+    color: white;
+    padding: 20px;
+    height: 15rem;
+    margin-top: auto;
+}
+
+
+/* header */
+
+.header {
+    top: 0px;
+    position: fixed;
+    width: 100%;
+    background: rgb(110, 132, 182);
+    color: white;
+    z-index: 1;
+}
+
+.header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+}
+
+.header li {
+    display: block;
+    padding: 20px 20px;
+    text-decoration: none;
+    color: white !important;
+}
+
+.header li:hover,
+.header .menu-btn:hover {
+    background-color: #99b0d9b8;
+    border-radius: 4px;
+}
+
+.header .logo {
+    margin-top: 20px;
+    display: none;
+    float: left;
+    margin-left: 2rem;
+    font-size: 2em;
+    background-image: url(assets/nstWhite.png);
+    position: absolute;
+}
+
+
+/* menu */
+
+.header .menu {
+    margin-top: 2px;
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
+}
+
+
+/* menu icon */
+
+.header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    padding: 20px 10px;
+    position: relative;
+    user-select: none;
+}
+
+.header .menu-icon .navicon {
+    background: #333;
+    display: block;
+    height: 2px;
+    position: absolute;
+    transition: 0.2s ease-out;
+    width: 18px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+    background: #333;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all 0.2s ease-out;
+    width: 100%;
+}
+
+.header .menu-icon .navicon:before {
+    top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+    top: -5px;
+}
+
+
+/* header and menu btn */
+
+.header .menu-btn {
+    display: none;
+}
+
+.header .menu-btn:checked~.menu {
+    max-height: 240px;
+}
+
+.header .menu-btn:checked~.menu-icon .navicon {
+    background: transparent;
+}
+
+.header .menu-btn:checked~.menu-icon .navicon:before {
+    transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked~.menu-icon .navicon:after {
+    transform: rotate(45deg);
+}
+
+.header .menu-btn:checked~.menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked~.menu-icon:not(.steps) .navicon:after {
+    top: 0;
+}
+
+
+/* 48em = 768px */
+
+@media (min-width: 48em) {
+    .header li {
+        float: left;
+    }
+    .header li a {
+        padding: 20px 20px;
+    }
+    .header .menu {
+        clear: none;
+        float: right;
+        max-height: none;
+        padding: 10px;
+        height: 85px;
+    }
+    .header .menu-icon {
+        display: none;
+    }
+    body {
+        background-size: 38rem;
+        background-image: url(images/main.png), url(images/main2.png);
+    }
+    .main {
+        min-height: 10rem;
+    }
+    .about {
+        margin-top: 50px;
+    }
+    .logo {
+        height: 100px;
+        margin: 0 auto;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        box-shadow: 0px -10px 10px -10px black;
+        display: block !important;
+    }
 }

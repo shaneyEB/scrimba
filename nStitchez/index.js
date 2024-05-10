@@ -351,8 +351,3 @@ function renderValueRadios(items) {
     }
     valueRadios.innerHTML = radioItems
 }
-
-
-
-
-
