@@ -153,7 +153,7 @@ function appendItemToxAppEl(item) {
         <td> ${itemValue.minVelocity}</td>
         <td> ${itemValue.avgVelocity}</td>
         <td> ${itemValue.sd}</td>
-        <td>: ${itemValue.notes}</td>
+        <td> ${itemValue.notes}</td>
     </tr>
     `
 
