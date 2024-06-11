@@ -1,0 +1,101 @@
+html,
+body {
+    margin: 0;
+    padding: 5px;
+    font-family: 'Quicksand', sans-serif;
+    color: #222;
+    user-select: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
+    margin: 20px auto;
+}
+
+img {
+    width: 100px;
+    margin: 0 auto;
+}
+
+input {
+    color: #432000;
+    background-color: #DCE1EB;
+    border: 0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    margin: 10px 0;
+}
+
+textarea {
+    color: #432000;
+    background-color: #DCE1EB;
+    border: 0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    margin: 10px 0;
+}
+
+button {
+    color: #FDFDFD;
+    background-color: #ed780b;
+    border: 0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+button:hover {
+    background-color: #3f82d9;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+ul li {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 16px;
+    background-color: #FFFDF8;
+    padding: 15px;
+    border-radius: 8px;
+    flex-grow: 1;
+    text-align: left;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2)
+}
+
+#error {
+    color: red;
+    font-size: 20px;
+}
+
+.main {
+    border-left: 1px dotted rgb(117, 116, 116);
+    padding: 2px;
+}
+
+.right {
+    background-color: transparent;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.green {
+    background: #ceebce;
+}

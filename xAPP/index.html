@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <title>XBulletz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="container">
+        <img src="assets/cart.png">
+
+        <h1>Cartridge Data Entry</h1>
+        <button id="create" type="button">
+            Create New Entry
+        </button>
+
+        <div class="container" id="xForm" style="display:none;">
+            <form id="cartridgeForm" class="container">
+                <label for="cartridge">Cartridge Name:</label>
+                <input type="text" id="cartridge" required><br>
+
+                <label for="bulletWeight">Bullet Weight:</label>
+                <input type="number" id="bulletWeight" required><br>
+
+                <label for="bulletType">Bullet Type:</label>
+                <input type="text" id="bulletType" required><br>
+
+                <label for="bc">BC:</label>
+                <input type="text" id="bc" required><br>
+
+                <label for="primer">Primer:</label>
+                <input type="text" id="primer" required><br>
+
+                <label for="powder">Powder:</label>
+                <input type="text" id="powder" required><br>
+
+                <label for="powderCharge">Powder Charge:</label>
+                <input type="number" id="powderCharge" required><br>
+
+                <label for="maxVelocity">Max Velocity:</label>
+                <input type="number" id="maxVelocity" required><br>
+
+                <label for="minVelocity">Min Velocity:</label>
+                <input type="number" id="minVelocity" required><br>
+
+                <label for="avgVelocity">Avg Velocity:</label>
+                <input type="number" id="avgVelocity" readonly><br>
+
+                <label for="sd">SD:</label>
+                <input type="number" id="sd" readonly><br>
+
+                <label for="notes">Notes:</label>
+                <textarea id="notes" required></textarea><br>
+
+            </form>
+            <button id="add-button">Add to List</button>
+        </div>
+
+        <div id="error"></div>
+        <ul id="list">
+        </ul>
+
+        <table id="dataTable" style="display:none">
+            <thead>
+                <tr>
+                    <th>Cartridge Name</th>
+                    <th>Bullet Weight</th>
+                    <th>Bullet Type</th>
+                    <th>BC</th>
+                    <th>Primer</th>
+                    <th>Powder</th>
+                    <th>Powder Charge</th>
+                    <th>Max Velocity</th>
+                    <th>Min Velocity</th>
+                    <th>Avg Velocity</th>
+                    <th>SD</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody id="details"></tbody>
+        </table>
+        <button type="button" onclick="tableToCSV()">
+            Download CSV
+        </button>
+    </div>
+
+
+    <script type="text/javascript">
+        function tableToCSV() {
+            let csv_data = [];
+            let rows = document.getElementsByTagName('tr');
+            for (let i = 0; i < rows.length; i++) {
+                let cols = rows[i].querySelectorAll('td,th');
+                let csvrow = [];
+                for (let j = 0; j < cols.length; j++) {
+                    csvrow.push(cols[j].innerHTML);
+                }
+                csv_data.push(csvrow.join(","));
+            }
+            csv_data = csv_data.join('\n');
+            downloadCSVFile(csv_data);
+        }
+
+        function downloadCSVFile(csv_data) {
+            CSVFile = new Blob([csv_data], {
+                type: "text/csv"
+            });
+            let temp_link = document.createElement('a');
+            temp_link.download = "XBullets.csv";
+            let url = window.URL.createObjectURL(CSVFile);
+            temp_link.href = url;
+            temp_link.style.display = "none";
+            document.body.appendChild(temp_link);
+            temp_link.click();
+            document.body.removeChild(temp_link);
+        }
+    </script>
+
+
+    <script src="index.js" type="module"></script>
+    <script src="script.js" type="module"></script>
+</body>
+
+</html>
