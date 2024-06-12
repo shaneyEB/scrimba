@@ -152,7 +152,7 @@ ul li {
     display: flex;
     flex-direction: column;
     max-width: 820px;
-    margin: 0px auto;
+    margin: 10px auto;
     border: orange solid 1px;
     border-radius: 3px;
 }
