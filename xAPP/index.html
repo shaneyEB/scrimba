@@ -23,7 +23,8 @@
 <body>
     <div class="container">
         <img src="assets/cart.png">
-
+        <div id='spinIt'></div>
+        <div class="toast-overlay" id="toast-overlay"></div>
         <button id="create" type="button">
             Create New Entry
         </button>
@@ -83,9 +84,11 @@
             View Details
         </button>
 
-        <table id="dataTable" style="display:none;">
+    </div>
+    <div id="datax" style="overflow-x:auto; margin:10px;">
+        <table id="dataTable" class="center" style="display:none;">
             <thead>
-                <tr>
+                <tr class="orange">
                     <th>Cartridge Name</th>
                     <th>Bullet Weight</th>
                     <th>Bullet Type</th>
@@ -138,6 +141,7 @@
 
     <script src="index.js" type="module"></script>
     <script src="script.js" type="module"></script>
+
 </body>
 
 </html>

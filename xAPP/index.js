@@ -30,6 +30,56 @@ const idx = document.getElementById("idx")
 const xView = document.getElementById("xView")
 const dataTable = document.getElementById("dataTable")
 
+
+let icon = {
+    success: '<span class="material-symbols-outlined">💚 success</span>',
+    danger: '<span class="material-symbols-outlined">🛑 error</span>',
+    warning: '<span class="material-symbols-outlined">⚡warning</span>',
+    info: '<span class="material-symbols-outlined">💙info</span>',
+};
+
+const showToast = (
+    message = "Sample Message",
+    toastType = "info",
+    duration = 5000) => {
+    if (!Object.keys(icon).includes(toastType))
+        toastType = "info";
+
+    let box = document.createElement("div");
+    box.classList.add(
+        "toast", `toast-${toastType}`);
+    box.innerHTML = ` <div class="toast-content-wrapper"> 
+                      <div class="toast-icon"> 
+                      ${icon[toastType]} 
+                      </div> 
+                      <div class="toast-message">${message}</div> 
+                      <div class="toast-progress"></div> 
+                      </div>`;
+    duration = duration || 5000;
+    box.querySelector(".toast-progress").style.animationDuration =
+        `${duration / 1000}s`;
+
+    let toastAlready =
+        document.body.querySelector(".toast");
+    if (toastAlready) {
+        toastAlready.remove();
+    }
+
+    document.body.appendChild(box)
+};
+
+
+//warn.addEventListener("click", (e) => {
+//e.preventDefault();
+//showToast("!warning! server error", "warning", 5000);
+//});
+
+const spinner = (load) => {
+    const x = document.getElementById('spinIt')
+    load === true ? x.style.display = "block" : x.style.display = "none"
+}
+spinner(true)
+
 xView.addEventListener("click", function() {
     if (dataTable.style.display === "none") {
         dataTable.style.display = "block";
@@ -80,7 +130,7 @@ function verify(xType) {
         (val8 === null || val8 === undefined || val8 === "") ||
         (val9 === null || val9 === undefined || val9 === "")
     ) {
-        error.innerHTML = " Please check the input field... Try again!"
+        showToast("Please check the input fields... Try again!", "danger", 5000);
     } else {
         let values = {
             "cartridge": val1,
@@ -99,10 +149,13 @@ function verify(xType) {
         }
         if (xType == true) {
             push(xAppInDB, values)
+            showToast("Saving Entry!", "success", 5000);
         } else {
             updateItem(idx.value, values)
+            showToast("Updating Entry!", "success", 5000);
         }
         error.innerHTML = ""
+
     }
 }
 
@@ -110,12 +163,14 @@ onValue(xAppInDB, function(snapshot) {
     if (snapshot.exists()) {
         let itemsArray = Object.entries(snapshot.val())
         clearxAppEl()
+
         for (let i = 0; i < itemsArray.length; i++) {
             let currentItem = itemsArray[i]
             appendItemToxAppEl(currentItem)
         }
     } else {
         xAppEl.innerHTML = "No items here... yet"
+        spinner(false)
     }
 })
 
@@ -213,6 +268,7 @@ function appendItemToxAppEl(item) {
     deleteItem.addEventListener("click", function() {
         let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
         remove(exactLocationOfItemInDB)
+        showToast("Deleting Entry!", "warning", 5000);
     })
 
     toggleItem.addEventListener("click", function() {
@@ -222,16 +278,21 @@ function appendItemToxAppEl(item) {
                 "active": "white",
             }
             update(exactLocationOfItemInDB, values)
+            showToast("Removing Detail Highlight", "info", 5000);
         } else {
             let values = {
                 "active": "green",
             }
+            showToast("Adding Detail Highlight", "success", 5000);
             update(exactLocationOfItemInDB, values)
         }
+
     })
     clearInputFieldEl()
     xForm.style.display = "none"
     create.style.display = "block"
     xView.style.display = "block"
     xAppEl.append(newEl)
+    spinner(false)
+
 }
