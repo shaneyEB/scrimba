@@ -286,13 +286,16 @@ function appendItemToxAppEl(item) {
     })
 
     deleteItem.addEventListener("click", function() {
-        let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
-        remove(exactLocationOfItemInDB).then(() => {
-                showToast("Deleting Entry!", "warning", 5000);
-            })
-            .catch((error) => {
-                showToast("Unable to remove Entry!", "error", 5000);
-            });
+        var x = confirm("Are you sure you would like to delete this item!");
+        if (x) {
+            let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
+            remove(exactLocationOfItemInDB).then(() => {
+                    showToast("Deleting Entry!", "warning", 5000);
+                })
+                .catch((error) => {
+                    showToast("Unable to remove Entry!", "error", 5000);
+                });
+        }
 
     })
 
