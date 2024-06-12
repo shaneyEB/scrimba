@@ -25,6 +25,8 @@
         <img src="assets/cart.png">
         <div id='spinIt'></div>
         <div class="toast-overlay" id="toast-overlay"></div>
+        <input type="text" id="search" onkeyup="searchX()" placeholder="Search for items.." title="Type in a value of a field">
+
         <button id="create" type="button">
             Create New Entry
         </button>
@@ -88,7 +90,7 @@
     <div id="datax" style="overflow-x:auto;">
         <table id="dataTable" class="center" style="display:none;">
             <thead>
-                <tr class="orange">
+                <tr id="colHead" class="orange">
                     <th>Cartridge Name</th>
                     <th>Bullet Weight</th>
                     <th>Bullet Type</th>
@@ -100,7 +102,7 @@
                     <th>Min Velocity</th>
                     <th>Avg Velocity</th>
                     <th>SD</th>
-                    <th>Notes</th>
+                    <th colspan="3">Notes</th>
                 </tr>
             </thead>
             <tbody id="details"></tbody>
@@ -108,6 +110,49 @@
     </div>
 
     <script type="text/javascript">
+        function searchX() {
+            searchTable()
+            searchUL()
+        }
+
+        function searchTable() {
+            var input, filter, tr, i, txtValue, colHead;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            tr = document.getElementsByTagName("tr");
+            colHead = document.getElementById("colHead")
+            for (i = 0; i < tr.length; i++) {
+                a = tr[i];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+            colHead.style.display = ""
+        }
+
+        function searchUL() {
+            var inputx, filterx, ul, li, a, i, txtValuex;
+            inputx = document.getElementById("search");
+            filterx = inputx.value.toUpperCase();
+            li = document.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i];
+                txtValuex = a.textContent || a.innerText;
+                if (txtValuex.toUpperCase().indexOf(filterx) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
         function tableToCSV() {
             let csv_data = [];
             let rows = document.getElementsByTagName('tr');

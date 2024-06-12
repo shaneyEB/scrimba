@@ -30,6 +30,8 @@ const xForm = document.getElementById("xForm")
 const idx = document.getElementById("idx")
 const xView = document.getElementById("xView")
 const dataTable = document.getElementById("dataTable")
+const search = document.getElementById("search")
+
 
 
 let icon = {
@@ -65,10 +67,8 @@ const showToast = (
     if (toastAlready) {
         toastAlready.remove();
     }
-
     document.body.appendChild(box)
 };
-
 
 //warn.addEventListener("click", (e) => {
 //e.preventDefault();
@@ -80,6 +80,10 @@ const spinner = (load) => {
     load === true ? x.style.display = "block" : x.style.display = "none"
 }
 spinner(true)
+
+search.addEventListener("search", () => {
+    getDetails()
+});
 
 xView.addEventListener("click", function() {
     if (dataTable.style.display === "none") {
@@ -110,7 +114,16 @@ addButtonEl.addEventListener("click", function() {
 
 function updateItem(itemID, values) {
     let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
-    update(exactLocationOfItemInDB, values)
+    update(exactLocationOfItemInDB, values).then(() => {
+            showToast("Updating Entry!", "success", 5000);
+            xForm.style.display = "none"
+            create.style.display = "block"
+            xView.style.display = "block"
+        })
+        .catch((error) => {
+            showToast("Unable to update Entry!", "error", 5000);
+        });
+
 }
 
 function verify(xType) {
@@ -159,7 +172,7 @@ function verify(xType) {
             showToast("Saving Entry!", "success", 5000);
         } else {
             updateItem(idx.value, values)
-            showToast("Updating Entry!", "success", 5000);
+
         }
         error.innerHTML = ""
 
@@ -238,8 +251,8 @@ function appendItemToxAppEl(item) {
     newEl.append(main)
 
     details.innerHTML += `
-    <tr>
-        <td>${itemValue.cartridge} </td>
+    <tr class="xEntry_holder">
+        <td> ${itemValue.cartridge} </td>
         <td> ${itemValue.bulletWeight}</td>
         <td> ${itemValue.bulletType}</td>
         <td> ${itemValue.bc}</td>
@@ -250,7 +263,7 @@ function appendItemToxAppEl(item) {
         <td> ${itemValue.minVelocity}</td>
         <td> ${itemValue.avgVelocity}</td>
         <td> ${itemValue.sd}</td>
-        <td> ${itemValue.notes}</td>
+        <td colspan="3"> ${itemValue.notes}</td>
     </tr>
     `
     editItem.addEventListener("click", function() {
@@ -274,8 +287,13 @@ function appendItemToxAppEl(item) {
 
     deleteItem.addEventListener("click", function() {
         let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
-        remove(exactLocationOfItemInDB)
-        showToast("Deleting Entry!", "warning", 5000);
+        remove(exactLocationOfItemInDB).then(() => {
+                showToast("Deleting Entry!", "warning", 5000);
+            })
+            .catch((error) => {
+                showToast("Unable to remove Entry!", "error", 5000);
+            });
+
     })
 
     toggleItem.addEventListener("click", function() {
