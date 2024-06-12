@@ -22,6 +22,7 @@ const avgVelocity = document.getElementById("avgVelocity")
 const sd = document.getElementById("sd")
 const notes = document.getElementById("notes")
 const addButtonEl = document.getElementById("add-button")
+const cancelButtonEl = document.getElementById("cancel-button")
 const xAppEl = document.getElementById("list")
 const error = document.getElementById("error")
 const create = document.getElementById("create")
@@ -91,6 +92,12 @@ xView.addEventListener("click", function() {
 create.addEventListener("click", function() {
     xForm.style.display = "block"
     create.style.display = "none"
+})
+
+cancelButtonEl.addEventListener("click", function() {
+    xForm.style.display = "none"
+    create.style.display = "block"
+    clearInputFieldEl()
 })
 
 addButtonEl.addEventListener("click", function() {
