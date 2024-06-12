@@ -7,7 +7,6 @@ const appSettings = {
 
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
-
 const details = document.getElementById("details")
 const xAppInDB = ref(database, "xBullets")
 const cartridge = document.getElementById("cartridge")
@@ -27,6 +26,17 @@ const xAppEl = document.getElementById("list")
 const error = document.getElementById("error")
 const create = document.getElementById("create")
 const xForm = document.getElementById("xForm")
+const idx = document.getElementById("idx")
+const xView = document.getElementById("xView")
+const dataTable = document.getElementById("dataTable")
+
+xView.addEventListener("click", function() {
+    if (dataTable.style.display === "none") {
+        dataTable.style.display = "block";
+    } else {
+        dataTable.style.display = "none";
+    }
+})
 
 create.addEventListener("click", function() {
     xForm.style.display = "block"
@@ -34,6 +44,19 @@ create.addEventListener("click", function() {
 })
 
 addButtonEl.addEventListener("click", function() {
+    if (idx.value === "") {
+        verify(true)
+    } else {
+        verify(false)
+    }
+})
+
+function updateItem(itemID, values) {
+    let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
+    update(exactLocationOfItemInDB, values)
+}
+
+function verify(xType) {
     let val1 = cartridge.value
     let val2 = bulletWeight.value
     let val3 = bulletType.value
@@ -47,7 +70,6 @@ addButtonEl.addEventListener("click", function() {
     let val11 = sd.value
     let val12 = notes.value
 
-
     if ((val1 === null || val1 === undefined || val1 === "") ||
         (val2 === null || val2 === undefined || val2 === "") ||
         (val3 === null || val3 === undefined || val3 === "") ||
@@ -57,10 +79,8 @@ addButtonEl.addEventListener("click", function() {
         (val7 === null || val7 === undefined || val7 === "") ||
         (val8 === null || val8 === undefined || val8 === "") ||
         (val9 === null || val9 === undefined || val9 === "")
-
     ) {
         error.innerHTML = " Please check the input field... Try again!"
-
     } else {
         let values = {
             "cartridge": val1,
@@ -77,11 +97,14 @@ addButtonEl.addEventListener("click", function() {
             "notes": val12,
             "active": "white"
         }
-        push(xAppInDB, values)
-            // clearInputFieldEl()
+        if (xType == true) {
+            push(xAppInDB, values)
+        } else {
+            updateItem(idx.value, values)
+        }
         error.innerHTML = ""
     }
-})
+}
 
 onValue(xAppInDB, function(snapshot) {
     if (snapshot.exists()) {
@@ -96,17 +119,26 @@ onValue(xAppInDB, function(snapshot) {
     }
 })
 
-
 function clearxAppEl() {
     xAppEl.innerHTML = ""
+    details.innerHTML = ""
 }
 
 function clearInputFieldEl() {
     cartridge.value = ""
     bulletWeight.value = ""
     bulletType.value = ""
+    bc.value = ""
+    primer.value = ""
+    powder.value = ""
+    powderCharge.value = ""
+    maxVelocity.value = ""
+    minVelocity.value = ""
+    avgVelocity.value = ""
+    sd.value = ""
+    notes.value = ""
+    idx.value = ""
 }
-
 
 function appendItemToxAppEl(item) {
     let itemID = item[0]
@@ -117,11 +149,14 @@ function appendItemToxAppEl(item) {
     let toggleItem = document.createElement("div")
     toggleItem.textContent = "💙"
     toggleItem.className = "right"
+    let editItem = document.createElement("div")
+    editItem.textContent = "✏️"
+    editItem.className = "right"
     let newEl = document.createElement("li")
     newEl.className = itemValue.active
     newEl.append(toggleItem)
     newEl.append(deleteItem)
-
+    newEl.append(editItem)
     let main = document.createElement("div")
     main.innerHTML = ` &nbsp; 
     Cartridge Name: ${itemValue.cartridge} 
@@ -156,17 +191,32 @@ function appendItemToxAppEl(item) {
         <td> ${itemValue.notes}</td>
     </tr>
     `
+    editItem.addEventListener("click", function() {
+        cartridge.value = itemValue.cartridge
+        bulletWeight.value = itemValue.bulletWeight
+        bulletType.value = itemValue.bulletType
+        bc.value = itemValue.bc
+        primer.value = itemValue.primer
+        powder.value = itemValue.powder
+        powderCharge.value = itemValue.powderCharge
+        maxVelocity.value = itemValue.maxVelocity
+        minVelocity.value = itemValue.minVelocity
+        avgVelocity.value = itemValue.avgVelocity
+        sd.value = itemValue.sd
+        notes.value = itemValue.notes
+        idx.value = itemID
+        xForm.style.display = "block"
+        create.style.display = "none"
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
 
     deleteItem.addEventListener("click", function() {
-
         let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
         remove(exactLocationOfItemInDB)
     })
 
     toggleItem.addEventListener("click", function() {
         let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
-
-
         if (itemValue.active === "green") {
             let values = {
                 "active": "white",
@@ -179,9 +229,9 @@ function appendItemToxAppEl(item) {
             update(exactLocationOfItemInDB, values)
         }
     })
-
+    clearInputFieldEl()
     xForm.style.display = "none"
     create.style.display = "block"
-
+    xView.style.display = "block"
     xAppEl.append(newEl)
 }
