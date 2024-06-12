@@ -370,7 +370,7 @@ tr:hover {
 
 @keyframes myXPic {
     0% {
-        transform: scale(2);
+        transform: scale(1.5);
     }
     100% {
         transform: scale(1);
