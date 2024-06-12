@@ -88,8 +88,10 @@ search.addEventListener("search", () => {
 xView.addEventListener("click", function() {
     if (dataTable.style.display === "none") {
         dataTable.style.display = "block";
+        xView.innerText = "Hide Details"
     } else {
         dataTable.style.display = "none";
+        xView.innerText = "View Details"
     }
 })
 
