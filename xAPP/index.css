@@ -1,7 +1,7 @@
 html,
 body {
     margin: 0;
-    padding: 0px;
+    padding: 5px;
     font-family: "Quicksand", sans-serif;
     color: #222;
     user-select: none;
@@ -152,7 +152,7 @@ ul li {
     display: flex;
     flex-direction: column;
     max-width: 820px;
-    margin: 10px auto;
+    margin: 0px auto;
     border: orange solid 1px;
     border-radius: 3px;
 }
