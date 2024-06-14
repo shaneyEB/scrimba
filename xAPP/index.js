@@ -160,14 +160,16 @@ removeButtonEl.addEventListener("click", function() {
     let itemID = idx.value
     let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
     remove(exactLocationOfItemInDB).then(() => {
-            showToast("Deleting Entry!", "warning", 5000);
+            showToast("Deleting Entry!", "success", 5000);
             hideRemove()
             hideModal()
+            idx.value = ""
         })
         .catch((error) => {
             showToast("Unable to remove Entry!", "error", 5000);
             hideRemove()
             hideModal()
+            idx.value = ""
         });
 })
 
@@ -177,9 +179,11 @@ function updateItem(itemID, values) {
             showToast("Updating Entry!", "success", 5000);
             hideForm()
             hideModal()
+            idx.value = ""
         })
         .catch((error) => {
             showToast("Unable to update Entry!", "error", 5000);
+            idx.value = ""
         });
 
 }
