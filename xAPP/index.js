@@ -2,13 +2,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
 import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSettings = {
-    databaseURL: "https://movies-4050e-default-rtdb.firebaseio.com/"
-}
-
+        databaseURL: "https://movies-4050e-default-rtdb.firebaseio.com/"
+    }
+    //DB ACCESS
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
-const details = document.getElementById("details")
 const xAppInDB = ref(database, "xBullets")
+
+const details = document.getElementById("details")
 const cartridge = document.getElementById("cartridge")
 const bulletWeight = document.getElementById("bulletWeight")
 const bulletType = document.getElementById("bulletType")
@@ -31,8 +32,19 @@ const idx = document.getElementById("idx")
 const xView = document.getElementById("xView")
 const dataTable = document.getElementById("dataTable")
 const search = document.getElementById("search")
+let isActive = false
+const modal = document.getElementById("myModal");
+const span = document.getElementsByClassName("close")[0];
 
+span.onclick = function() {
+    modal.style.display = "none";
+}
 
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 let icon = {
     success: '<span class="material-symbols-outlined">💚 success</span>',
@@ -98,11 +110,13 @@ xView.addEventListener("click", function() {
 create.addEventListener("click", function() {
     xForm.style.display = "block"
     create.style.display = "none"
+    modal.style.display = "block";
 })
 
 cancelButtonEl.addEventListener("click", function() {
     xForm.style.display = "none"
     create.style.display = "block"
+    modal.style.display = "none";
     clearInputFieldEl()
 })
 
@@ -121,6 +135,7 @@ function updateItem(itemID, values) {
             xForm.style.display = "none"
             create.style.display = "block"
             xView.style.display = "block"
+            modal.style.display = "none";
         })
         .catch((error) => {
             showToast("Unable to update Entry!", "error", 5000);
@@ -170,11 +185,18 @@ function verify(xType) {
             "active": "white"
         }
         if (xType == true) {
-            push(xAppInDB, values)
-            showToast("Saving Entry!", "success", 5000);
+            if (isActive) {
+                push(xAppInDB, values)
+                showToast("Saving Entry!", "success", 5000);
+                modal.style.display = "none";
+            } else {
+                showToast("Storing offline!", "warning", 5000);
+                localStorage.setItem("new", JSON.stringify(values));
+                console.log(JSON.parse(localStorage.getItem("new")));
+            }
+
         } else {
             updateItem(idx.value, values)
-
         }
         error.innerHTML = ""
 
@@ -182,19 +204,30 @@ function verify(xType) {
 }
 
 onValue(xAppInDB, function(snapshot) {
+    let items = {}
+    let itemsArray = {}
     if (snapshot.exists()) {
-        let itemsArray = Object.entries(snapshot.val())
+        isActive = true
+        itemsArray = Object.entries(snapshot.val())
         clearxAppEl()
-
-        for (let i = 0; i < itemsArray.length; i++) {
-            let currentItem = itemsArray[i]
-            appendItemToxAppEl(currentItem)
-        }
+        localStorage.setItem("main", JSON.stringify(itemsArray));
+        items = JSON.parse(localStorage.getItem("main"));
     } else {
+        isActive = false
         xAppEl.innerHTML = "No items here... yet"
         spinner(false)
+        items = JSON.parse(localStorage.getItem("main"));
     }
+    buildList(items)
+
 })
+
+function buildList(items) {
+    for (let i = 0; i < items.length; i++) {
+        let currentItem = items[i]
+        appendItemToxAppEl(currentItem)
+    }
+}
 
 function clearxAppEl() {
     xAppEl.innerHTML = ""
@@ -220,35 +253,37 @@ function clearInputFieldEl() {
 function appendItemToxAppEl(item) {
     let itemID = item[0]
     let itemValue = item[1]
-    let deleteItem = document.createElement("div")
+    let deleteItem = document.createElement("span")
     deleteItem.textContent = "✂️"
     deleteItem.className = "right"
-    let toggleItem = document.createElement("div")
+    let toggleItem = document.createElement("span")
     toggleItem.textContent = "💙"
     toggleItem.className = "right"
-    let editItem = document.createElement("div")
+    let editItem = document.createElement("span")
     editItem.textContent = "✏️"
     editItem.className = "right"
-    let newEl = document.createElement("li")
+    let newEl = document.createElement("tr")
     newEl.className = itemValue.active
-    newEl.append(toggleItem)
-    newEl.append(deleteItem)
-    newEl.append(editItem)
-    let main = document.createElement("div")
-    main.innerHTML = ` &nbsp; 
-    Cartridge Name: ${itemValue.cartridge} 
-    Bullet Weight: ${itemValue.bulletWeight}
-    Bullet Type: ${itemValue.bulletType}
-    BC: ${itemValue.bc}
-    Primer: ${itemValue.primer}
-    Powder: ${itemValue.powder}
-    Powder Charge: ${itemValue.powderCharge}
-    Max Velocity: ${itemValue.maxVelocity}
-    Min Velocity: ${itemValue.minVelocity}
-    Avg Velocity: ${itemValue.avgVelocity}
-    SD: ${itemValue.sd}
-    Notes: ${itemValue.notes}
-    `
+    let newTD = document.createElement("td")
+    newEl.append(newTD)
+    newTD.append(toggleItem)
+    newTD.append(deleteItem)
+    newTD.append(editItem)
+    let main = document.createElement("td")
+    main.innerHTML = ` <td>
+    Cartridge Name: ${itemValue.cartridge} <br>
+    Bullet Weight: ${itemValue.bulletWeight}<br>
+    Bullet Type: ${itemValue.bulletType}<br>
+    BC: ${itemValue.bc}<br>
+    Primer: ${itemValue.primer}<br>
+    Powder: ${itemValue.powder}<br>
+    Powder Charge: ${itemValue.powderCharge}<br>
+    Max Velocity: ${itemValue.maxVelocity}<br>
+    Min Velocity: ${itemValue.minVelocity}<br>
+    Avg Velocity: ${itemValue.avgVelocity}<br>
+    SD: ${itemValue.sd}<br>
+    Notes: ${itemValue.notes}<br>
+   </td> `
     main.className = "main"
     newEl.append(main)
 
@@ -269,6 +304,7 @@ function appendItemToxAppEl(item) {
     </tr>
     `
     editItem.addEventListener("click", function() {
+        modal.style.display = "block";
         cartridge.value = itemValue.cartridge
         bulletWeight.value = itemValue.bulletWeight
         bulletType.value = itemValue.bulletType
@@ -288,16 +324,13 @@ function appendItemToxAppEl(item) {
     })
 
     deleteItem.addEventListener("click", function() {
-        var x = confirm("Are you sure you would like to delete this item!");
-        if (x) {
-            let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
-            remove(exactLocationOfItemInDB).then(() => {
-                    showToast("Deleting Entry!", "warning", 5000);
-                })
-                .catch((error) => {
-                    showToast("Unable to remove Entry!", "error", 5000);
-                });
-        }
+        let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
+        remove(exactLocationOfItemInDB).then(() => {
+                showToast("Deleting Entry!", "warning", 5000);
+            })
+            .catch((error) => {
+                showToast("Unable to remove Entry!", "error", 5000);
+            });
 
     })
 

@@ -1,10 +1,11 @@
 html,
 body {
     margin: 0;
-    padding: 5px;
+    padding: 0px;
     font-family: "Quicksand", sans-serif;
     color: #222;
     user-select: none;
+    font-size: 16px;
 }
 
 
@@ -50,12 +51,12 @@ h1 {
 .container {
     display: flex;
     flex-direction: column;
-    max-width: 320px;
+    max-width: 820px;
     margin: 10px auto;
 }
 
 img {
-    width: 150px;
+    width: 100px;
     margin: 0 auto;
 }
 
@@ -65,10 +66,11 @@ input {
     border: 0;
     padding: 15px;
     border-radius: 8px;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     font-family: "Quicksand", sans-serif;
-    margin: 10px 0;
+    margin: 5px 0;
+    border: rgb(198, 198, 198) solid .05px;
 }
 
 textarea {
@@ -81,6 +83,7 @@ textarea {
     text-align: center;
     font-family: "Quicksand", sans-serif;
     margin: 10px 0;
+    border: rgb(198, 198, 198) solid .05px;
 }
 
 button {
@@ -107,19 +110,17 @@ ul {
     flex-wrap: wrap;
     gap: 10px;
     margin-top: -2px;
+    border-radius: 6px;
 }
 
 ul li {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     font-size: 16px;
-    background-color: #fffdf8;
     padding: 15px;
-    border-radius: 8px;
     flex-grow: 1;
     text-align: left;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 #error {
@@ -132,11 +133,21 @@ ul li {
     padding: 2px;
 }
 
+.aligned {
+    display: flex;
+    align-items: center;
+}
+
 .right {
     background-color: transparent;
     text-align: right;
-    margin-right: 5px;
     cursor: pointer;
+    padding: 10px;
+    line-height: 50px;
+}
+
+.grey {
+    color: #b5b4b4;
 }
 
 .green {
@@ -145,11 +156,6 @@ ul li {
 
 .greenBkg {
     background: #3bbd3b;
-}
-
-.orange {
-    background: #ed780b;
-    color: white;
 }
 
 #dataTable {
@@ -161,31 +167,61 @@ ul li {
     border-radius: 3px;
 }
 
+.rounded {
+    border-radius: 3px;
+    border: orange solid 1px;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
-    margin: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #dce1eb;
+}
+
+td {
+    margin-left: 12px;
 }
 
 th,
 td {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #fff;
+}
+
+#dataTable td:hover {
+    background-color: black;
+    color: white;
 }
 
 td:last-child {
     width: 100%;
 }
 
-th:hover {
-    background-color: black;
+td:first-child {
+    background: #a6a6a6;
     color: white;
 }
 
-tr:hover {
+#dataTable td:first-child {
+    background: transparent;
+    color: black;
+}
+
+th {
     background-color: #ed780b;
     color: white;
+}
+
+tr {
+    background-color: #f3f5f8;
+}
+
+label {
+    font-size: 13px;
 }
 
 #spinIt {
@@ -374,5 +410,314 @@ tr:hover {
     }
     100% {
         transform: scale(1);
+    }
+}
+
+.shadow {
+    text-shadow: 2px 2px 4px #242424;
+    color: white;
+}
+
+.altText {
+    font-family: "Architects Daughter", cursive;
+}
+
+.small {
+    color: rgb(144, 143, 143);
+    font-size: .9rem;
+}
+
+.link {
+    background: rgba(176, 193, 233, 0.8);
+    width: 200px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px auto;
+}
+
+.link:hover {
+    background: #eebda8e8;
+    cursor: pointer;
+}
+
+#about {
+    width: 100%;
+    margin-top: 100px;
+    padding: 20px 20px;
+}
+
+.orange {
+    color: #ef7610;
+}
+
+.purple_back {
+    background: #b4acd486;
+}
+
+.purple {
+    color: #b4acd4;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.modal-dialog {
+    overflow-y: initial !important;
+}
+
+.modal-body {
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 10px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+/* Modal Content */
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    width: 90%;
+    max-width: 400px;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    border-radius: 10px;
+}
+
+
+/* Add Animation */
+
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+
+/* The Close Button */
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #eb8d4d;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 5px 16px;
+    color: white;
+}
+
+.modal-body {
+    padding: 2px 16px;
+    border-radius: 10px;
+}
+
+.modal-footer {
+    padding: 4px 16px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* footer */
+
+.footer {
+    width: 100%;
+    background: rgb(110 132 182 / 80%);
+    color: white;
+    height: 5rem;
+    padding: 20px;
+    width: 100%;
+    height: 15rem;
+}
+
+
+/* header */
+
+.header {
+    top: 0px;
+    position: fixed;
+    width: 100%;
+    background: rgb(71 72 73 / 80%);
+    color: white;
+}
+
+.header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+}
+
+.header span a {
+    display: block;
+    padding: 20px 20px;
+    text-decoration: none;
+    color: white !important;
+}
+
+.header span a:hover,
+.header .menu-btn:hover {
+    background-color: #575757;
+}
+
+.header .logo {
+    display: block;
+    float: left;
+    margin-left: 2rem;
+    font-size: 2em;
+    padding: 10px;
+    text-decoration: none;
+}
+
+
+/* menu */
+
+.header .menu {
+    margin-top: 2px;
+    clear: both;
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
+}
+
+
+/* menu icon */
+
+.header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    padding: 30px 10px;
+    position: relative;
+    user-select: none;
+}
+
+.header .menu-icon .navicon {
+    background: #333;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background 0.2s ease-out;
+    width: 18px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+    background: #333;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all 0.2s ease-out;
+    width: 100%;
+}
+
+.header .menu-icon .navicon:before {
+    top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+    top: -5px;
+}
+
+
+/* menu btn */
+
+.header .menu-btn {
+    display: none;
+}
+
+.header .menu-btn:checked~.menu {
+    max-height: 240px;
+}
+
+.header .menu-btn:checked~.menu-icon .navicon {
+    background: transparent;
+}
+
+.header .menu-btn:checked~.menu-icon .navicon:before {
+    transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked~.menu-icon .navicon:after {
+    transform: rotate(45deg);
+}
+
+.header .menu-btn:checked~.menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked~.menu-icon:not(.steps) .navicon:after {
+    top: 0;
+}
+
+
+/* 48em = 768px */
+
+@media (min-width: 48em) {
+    .header li {
+        float: left;
+    }
+    .header li a {
+        padding: 20px 20px;
+    }
+    .header .menu {
+        clear: none;
+        float: right;
+        max-height: none;
+    }
+    .header .menu-icon {
+        display: none;
+    }
+    body {
+        background-size: 38rem;
+    }
+    .main {
+        min-height: 10rem;
+    }
+    .about {
+        margin-top: 50px;
     }
 }

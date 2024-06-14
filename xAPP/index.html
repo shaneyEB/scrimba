@@ -21,92 +21,104 @@
 </head>
 
 <body>
-    <div class="container">
-        <img src="assets/cart.png" id="xpic">
-        <div id='spinIt'></div>
-        <div class="toast-overlay" id="toast-overlay"></div>
-        <input type="text" id="search" onkeyup="searchX()" placeholder="Search for items.." title="Type in a value of a field">
+    <header class="header">
 
-        <button id="create" type="button">
-            Create New Entry
-        </button>
+        <a href="" class="logo">
+            <div class="aligned">
+                <img src="icon.png" id="xpic"> <span class="shadow altText"><span class="orange">x</span><span class="grey">B</span>ullet<span class="orange">z</span></span>
+                </span>
+            </div>
+        </a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <span><a href="#"  id="create">📝Create New Entry</a></span>
+            <span><a href="#" onclick="tableToCSV()">⬇️DownLoad CSV</a></span>
+        </ul>
+    </header>
+    <div class="main">
+        <div id="about">
+            <div class="container">
+                <input type="text" id="search" onkeyup="searchX()" placeholder="Search for items.." title="Type in a value of a field">
+                <div id='spinIt'></div>
+                <div class="toast-overlay" id="toast-overlay"></div>
 
-        <div class="container" id="xForm" style="display:none;">
-            <form id="cartridgeForm" class="container">
-                <label for="cartridge">Cartridge Name:</label>
-                <input type="text" id="cartridge" required><br>
+                <div id="error"></div>
+                <div class="rounded">
+                    <table id="list"></table>
+                </div>
+                <button id="xView" type="button" style="margin-top:10px;">
+                    View Details
+                </button>
+            </div>
 
-                <label for="bulletWeight">Bullet Weight:</label>
-                <input type="number" id="bulletWeight" required><br>
-
-                <label for="bulletType">Bullet Type:</label>
-                <input type="text" id="bulletType" required><br>
-
-                <label for="bc">BC:</label>
-                <input type="text" id="bc" required><br>
-
-                <label for="primer">Primer:</label>
-                <input type="text" id="primer" required><br>
-
-                <label for="powder">Powder:</label>
-                <input type="text" id="powder" required><br>
-
-                <label for="powderCharge">Powder Charge:</label>
-                <input type="number" id="powderCharge" required><br>
-
-                <label for="maxVelocity">Max Velocity:</label>
-                <input type="number" id="maxVelocity" required><br>
-
-                <label for="minVelocity">Min Velocity:</label>
-                <input type="number" id="minVelocity" required><br>
-
-                <label for="avgVelocity">Avg Velocity:</label>
-                <input type="number" id="avgVelocity" readonly><br>
-
-                <label for="sd">SD:</label>
-                <input type="number" id="sd" readonly><br>
-
-                <label for="notes">Notes:</label>
-                <textarea id="notes" required></textarea><br>
-
-                <input type="text" id="idx" hidden>
-
-            </form>
-            <button id="add-button" class="greenBkg">Save</button> <button id="cancel-button">Cancel</button>
+            <div id="datax" style="overflow-x:auto;">
+                <table id="dataTable" class="center" style="display:none;">
+                    <thead>
+                        <tr id="colHead">
+                            <th>Cartridge Name</th>
+                            <th>Bullet Weight</th>
+                            <th>Bullet Type</th>
+                            <th>BC</th>
+                            <th>Primer</th>
+                            <th>Powder</th>
+                            <th>Powder Charge</th>
+                            <th>Max Velocity</th>
+                            <th>Min Velocity</th>
+                            <th>Avg Velocity</th>
+                            <th>SD</th>
+                            <th colspan="3">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="details"></tbody>
+                </table>
+            </div>
         </div>
-
-        <div id="error"></div>
-        <ul id="list"></ul>
-
-        <button type="button" onclick="tableToCSV()">
-            Download CSV
-        </button>
-
-        <button id="xView" type="button">
-            View Details
-        </button>
-
     </div>
-    <div id="datax" style="overflow-x:auto;">
-        <table id="dataTable" class="center" style="display:none;">
-            <thead>
-                <tr id="colHead" class="orange">
-                    <th>Cartridge Name</th>
-                    <th>Bullet Weight</th>
-                    <th>Bullet Type</th>
-                    <th>BC</th>
-                    <th>Primer</th>
-                    <th>Powder</th>
-                    <th>Powder Charge</th>
-                    <th>Max Velocity</th>
-                    <th>Min Velocity</th>
-                    <th>Avg Velocity</th>
-                    <th>SD</th>
-                    <th colspan="3">Notes</th>
-                </tr>
-            </thead>
-            <tbody id="details"></tbody>
-        </table>
+
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="about-modal">
+                    <div class="" id="xForm" style="display:none;">
+                        <form id="cartridgeForm" class="container">
+                            <label for="cartridge">Cartridge Name:</label>
+                            <input type="text" id="cartridge" required>
+                            <label for="bulletWeight">Bullet Weight:</label>
+                            <input type="number" id="bulletWeight" required>
+                            <label for="bulletType">Bullet Type:</label>
+                            <input type="text" id="bulletType" required>
+                            <label for="bc">BC:</label>
+                            <input type="text" id="bc" required>
+                            <label for="primer">Primer:</label>
+                            <input type="text" id="primer" required>
+                            <label for="powder">Powder:</label>
+                            <input type="text" id="powder" required>
+                            <label for="powderCharge">Powder Charge:</label>
+                            <input type="number" id="powderCharge" required>
+                            <label for="maxVelocity">Max Velocity:</label>
+                            <input type="number" id="maxVelocity" required>
+                            <label for="minVelocity">Min Velocity:</label>
+                            <input type="number" id="minVelocity" required>
+                            <label for="avgVelocity">Avg Velocity:</label>
+                            <input type="number" id="avgVelocity" readonly>
+                            <label for="sd">SD:</label>
+                            <input type="number" id="sd" readonly>
+                            <label for="notes">Notes:</label>
+                            <textarea id="notes" required></textarea>
+                            <input type="text" id="idx" hidden>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="add-button" class="greenBkg">Save</button> <button id="cancel-button">Cancel</button>
+            </div>
+        </div>
     </div>
 
     <script type="text/javascript">
@@ -182,7 +194,6 @@
             document.body.removeChild(temp_link);
         }
     </script>
-
 
     <script src="index.js" type="module"></script>
     <script src="script.js" type="module"></script>
