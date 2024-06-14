@@ -23,11 +23,13 @@ const avgVelocity = document.getElementById("avgVelocity")
 const sd = document.getElementById("sd")
 const notes = document.getElementById("notes")
 const addButtonEl = document.getElementById("add-button")
+const removeButtonEl = document.getElementById("remove-button")
 const cancelButtonEl = document.getElementById("cancel-button")
 const xAppEl = document.getElementById("list")
 const error = document.getElementById("error")
 const create = document.getElementById("create")
 const xForm = document.getElementById("xForm")
+const xRemove = document.getElementById("xRemove")
 const idx = document.getElementById("idx")
 const xView = document.getElementById("xView")
 const dataTable = document.getElementById("dataTable")
@@ -107,16 +109,42 @@ xView.addEventListener("click", function() {
     }
 })
 
-create.addEventListener("click", function() {
-    xForm.style.display = "block"
-    create.style.display = "none"
+function showModal() {
     modal.style.display = "block";
+}
+
+function hideModal() {
+    modal.style.display = "none";
+}
+
+function showForm() {
+    xForm.style.display = "block"
+    addButtonEl.style.display = "block"
+}
+
+function hideForm() {
+    xForm.style.display = "none"
+    addButtonEl.style.display = "none"
+}
+
+function hideRemove() {
+    xRemove.style.display = "none"
+    removeButtonEl.style.display = "none"
+}
+
+function showRemove() {
+    xRemove.style.display = "block"
+    removeButtonEl.style.display = "block"
+}
+
+create.addEventListener("click", function() {
+    showForm()
+    showModal()
+    hideRemove()
 })
 
 cancelButtonEl.addEventListener("click", function() {
-    xForm.style.display = "none"
-    create.style.display = "block"
-    modal.style.display = "none";
+    hideModal()
     clearInputFieldEl()
 })
 
@@ -128,14 +156,27 @@ addButtonEl.addEventListener("click", function() {
     }
 })
 
+removeButtonEl.addEventListener("click", function() {
+    let itemID = idx.value
+    let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
+    remove(exactLocationOfItemInDB).then(() => {
+            showToast("Deleting Entry!", "warning", 5000);
+            hideRemove()
+            hideModal()
+        })
+        .catch((error) => {
+            showToast("Unable to remove Entry!", "error", 5000);
+            hideRemove()
+            hideModal()
+        });
+})
+
 function updateItem(itemID, values) {
     let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
     update(exactLocationOfItemInDB, values).then(() => {
             showToast("Updating Entry!", "success", 5000);
-            xForm.style.display = "none"
-            create.style.display = "block"
-            xView.style.display = "block"
-            modal.style.display = "none";
+            hideForm()
+            hideModal()
         })
         .catch((error) => {
             showToast("Unable to update Entry!", "error", 5000);
@@ -188,11 +229,11 @@ function verify(xType) {
             if (isActive) {
                 push(xAppInDB, values)
                 showToast("Saving Entry!", "success", 5000);
-                modal.style.display = "none";
+                hideModal()
             } else {
                 showToast("Storing offline!", "warning", 5000);
                 localStorage.setItem("new", JSON.stringify(values));
-                console.log(JSON.parse(localStorage.getItem("new")));
+                // console.log(JSON.parse(localStorage.getItem("new")));
             }
 
         } else {
@@ -304,7 +345,9 @@ function appendItemToxAppEl(item) {
     </tr>
     `
     editItem.addEventListener("click", function() {
-        modal.style.display = "block";
+        showModal()
+        showForm()
+        hideRemove()
         cartridge.value = itemValue.cartridge
         bulletWeight.value = itemValue.bulletWeight
         bulletType.value = itemValue.bulletType
@@ -318,20 +361,14 @@ function appendItemToxAppEl(item) {
         sd.value = itemValue.sd
         notes.value = itemValue.notes
         idx.value = itemID
-        xForm.style.display = "block"
-        create.style.display = "none"
         window.scrollTo({ top: 0, behavior: 'smooth' });
     })
 
     deleteItem.addEventListener("click", function() {
-        let exactLocationOfItemInDB = ref(database, `xBullets/${itemID}`)
-        remove(exactLocationOfItemInDB).then(() => {
-                showToast("Deleting Entry!", "warning", 5000);
-            })
-            .catch((error) => {
-                showToast("Unable to remove Entry!", "error", 5000);
-            });
-
+        showModal()
+        hideForm()
+        showRemove()
+        idx.value = itemID
     })
 
     toggleItem.addEventListener("click", function() {
@@ -352,9 +389,7 @@ function appendItemToxAppEl(item) {
 
     })
     clearInputFieldEl()
-    xForm.style.display = "none"
-    create.style.display = "block"
-    xView.style.display = "block"
+    hideForm()
     xAppEl.append(newEl)
     spinner(false)
 

@@ -206,7 +206,8 @@ td:first-child {
     color: white;
 }
 
-#dataTable td:first-child {
+#dataTable,
+#actions td:first-child {
     background: transparent;
     color: black;
 }

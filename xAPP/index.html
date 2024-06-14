@@ -1,6 +1,5 @@
 <!doctype html>
 
-
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     <title>XBulletz</title>
@@ -8,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
-
     <link rel="icon" type="image/png" sizes="192x192" href="./android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
@@ -22,7 +20,6 @@
 
 <body>
     <header class="header">
-
         <a href="" class="logo">
             <div class="aligned">
                 <img src="icon.png" id="xpic"> <span class="shadow altText"><span class="orange">x</span><span class="grey">B</span>ullet<span class="orange">z</span></span>
@@ -32,7 +29,7 @@
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
         <ul class="menu">
-            <span><a href="#"  id="create">📝Create New Entry</a></span>
+            <span><a href="#" id="create">📝Create New Entry</a></span>
             <span><a href="#" onclick="tableToCSV()">⬇️DownLoad CSV</a></span>
         </ul>
     </header>
@@ -42,7 +39,6 @@
                 <input type="text" id="search" onkeyup="searchX()" placeholder="Search for items.." title="Type in a value of a field">
                 <div id='spinIt'></div>
                 <div class="toast-overlay" id="toast-overlay"></div>
-
                 <div id="error"></div>
                 <div class="rounded">
                     <table id="list"></table>
@@ -51,7 +47,6 @@
                     View Details
                 </button>
             </div>
-
             <div id="datax" style="overflow-x:auto;">
                 <table id="dataTable" class="center" style="display:none;">
                     <thead>
@@ -83,40 +78,45 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <div id="about-modal">
-                    <div class="" id="xForm" style="display:none;">
-                        <form id="cartridgeForm" class="container">
-                            <label for="cartridge">Cartridge Name:</label>
-                            <input type="text" id="cartridge" required>
-                            <label for="bulletWeight">Bullet Weight:</label>
-                            <input type="number" id="bulletWeight" required>
-                            <label for="bulletType">Bullet Type:</label>
-                            <input type="text" id="bulletType" required>
-                            <label for="bc">BC:</label>
-                            <input type="text" id="bc" required>
-                            <label for="primer">Primer:</label>
-                            <input type="text" id="primer" required>
-                            <label for="powder">Powder:</label>
-                            <input type="text" id="powder" required>
-                            <label for="powderCharge">Powder Charge:</label>
-                            <input type="number" id="powderCharge" required>
-                            <label for="maxVelocity">Max Velocity:</label>
-                            <input type="number" id="maxVelocity" required>
-                            <label for="minVelocity">Min Velocity:</label>
-                            <input type="number" id="minVelocity" required>
-                            <label for="avgVelocity">Avg Velocity:</label>
-                            <input type="number" id="avgVelocity" readonly>
-                            <label for="sd">SD:</label>
-                            <input type="number" id="sd" readonly>
-                            <label for="notes">Notes:</label>
-                            <textarea id="notes" required></textarea>
-                            <input type="text" id="idx" hidden>
-                        </form>
-                    </div>
+                <div id="xForm" style="display:none;">
+                    <form id="cartridgeForm" class="container">
+                        <label for="cartridge">Cartridge Name:</label>
+                        <input type="text" id="cartridge" required>
+                        <label for="bulletWeight">Bullet Weight:</label>
+                        <input type="number" id="bulletWeight" required>
+                        <label for="bulletType">Bullet Type:</label>
+                        <input type="text" id="bulletType" required>
+                        <label for="bc">BC:</label>
+                        <input type="text" id="bc" required>
+                        <label for="primer">Primer:</label>
+                        <input type="text" id="primer" required>
+                        <label for="powder">Powder:</label>
+                        <input type="text" id="powder" required>
+                        <label for="powderCharge">Powder Charge:</label>
+                        <input type="number" id="powderCharge" required>
+                        <label for="maxVelocity">Max Velocity:</label>
+                        <input type="number" id="maxVelocity" required>
+                        <label for="minVelocity">Min Velocity:</label>
+                        <input type="number" id="minVelocity" required>
+                        <label for="avgVelocity">Avg Velocity:</label>
+                        <input type="number" id="avgVelocity" readonly>
+                        <label for="sd">SD:</label>
+                        <input type="number" id="sd" readonly>
+                        <label for="notes">Notes:</label>
+                        <textarea id="notes" required></textarea>
+                        <input type="text" id="idx" hidden>
+                    </form>
                 </div>
+                <div id="xRemove" style="display:none;"> Are you sure you would like to remove this entry?</div>
             </div>
             <div class="modal-footer">
-                <button id="add-button" class="greenBkg">Save</button> <button id="cancel-button">Cancel</button>
+                <table id="actions">
+                    <tr>
+                        <td style="width:50px; padding:0px;"><button id="add-button" style="display:none;" class="greenBkg">Save</button></td>
+                        <td style="width:50px; padding:0px;"><button id="remove-button" style="display:none;" class="greenBkg">OK</button></td>
+                        <td><button id="cancel-button">Cancel</button> </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
@@ -194,10 +194,8 @@
             document.body.removeChild(temp_link);
         }
     </script>
-
     <script src="index.js" type="module"></script>
     <script src="script.js" type="module"></script>
-
 </body>
 
 </html>
