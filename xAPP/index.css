@@ -70,7 +70,7 @@ input {
     text-align: center;
     font-family: "Quicksand", sans-serif;
     margin: 5px 0;
-    border: rgb(198, 198, 198) solid .05px;
+    border: rgb(198, 198, 198) solid 0.05px;
 }
 
 textarea {
@@ -83,7 +83,7 @@ textarea {
     text-align: center;
     font-family: "Quicksand", sans-serif;
     margin: 10px 0;
-    border: rgb(198, 198, 198) solid .05px;
+    border: rgb(198, 198, 198) solid 0.05px;
 }
 
 button {
@@ -177,7 +177,7 @@ table {
     width: 100%;
 }
 
-tr:nth-child(even) {
+#dataTable tr:nth-child(even) {
     background-color: #dad8d8;
 }
 
@@ -218,7 +218,11 @@ th {
 }
 
 tr {
-    background-color: #fcfcfc;
+    background-color: #eae9e9;
+}
+
+#actions tr {
+    background-color: transparent;
 }
 
 label {
@@ -425,7 +429,7 @@ label {
 
 .small {
     color: rgb(144, 143, 143);
-    font-size: .9rem;
+    font-size: 0.9rem;
 }
 
 .link {
