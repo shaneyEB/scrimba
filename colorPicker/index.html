@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+    <title>ColorPicker</title>
+</head>
+
+<body>
+    <h1 id="title" class="fontX"></h1>
+    <div class="container">
+        <header>
+            <input id="xPicker" type="color" value="#e66465" />
+            <select id="xType">
+                <option value="monochrome" selected="selected">Monochrome</option>
+                <option value="monochrome-dark">Monochrome Dark</option>
+                <option value="monochrome-light">Monochrome Light</option>
+                <option value="analogic">Analogic</option>
+                <option value="complement">Complement</option>
+                <option value="analogic-complement">Analogic Complement</option>
+                <option value="triad">Triad</option>
+                <option value="quad">Quad</option>
+            </select>
+            <button id="xColor">Get Colors</button>
+        </header>
+        <section id="output">
+        </section>
+        <footer id="footer"></footer>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
